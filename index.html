@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
+  <title>Addressing the ID-Matching Challenge in Long Video Captioning</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -52,20 +52,33 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">Addressing the ID-Matching Challenge in Long Video Captioning</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Zhantao Yang</a><sup>*</sup>,</span>
                 <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Huangji Wang</a><sup>*</sup>,</span>
                   <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Ruili Feng</a></sup>,</span>
+                  <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Han Zhang</a></sup>,</span>
+                  <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Yuting Hu</a></sup>,</span>
+                  <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Shangwen Zhu</a></sup>,</span>
+                  <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Junyan Li</a></sup>,</span>
+                  <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Yu Liu</a></sup>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Fan Cheng</a>
                   </span>
+                  
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
+                    <span class="author-block">Shanghai Jiao Tong University<br> Alibaba group</span>
                     <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
                   </div>
 
@@ -123,22 +136,7 @@
 </section>
 
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -148,7 +146,9 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+          This paper addresses the ID-Matching challenge in long video captioning, which is crucial for generating accurate captions in text-to-video tasks. Previous methods have been limited in generalization and relied on point-wise matching. This paper introduces a new benchmark for evaluating ID-Matching performance in captions and proposes a novel method, Recognizing Identities for Captioning Effectively (RICE), built on LVLMs (Large Vision-Language Models) like GPT-4o. The approach enhances ID-Matching performance by improving the usage of image information and increasing the quantity of individual descriptions. Experimental results show that RICE significantly boosts ID-Matching precision (from 50% to 90%) and recall (from 15% to 80%).
+
+
           </p>
         </div>
       </div>
@@ -158,59 +158,192 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-full">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            There is an example of video captions for a video lasting around 480 seconds (around 200 key
+ frames) obtained by: GPT-4o, ShareGPT4Video, and RICE. For simplicity, we have left out some
+ intermediate key frames and their captions. The results show that RICE generates more detailed
+ and accurate captions while keeping tracking the main individuals throughout the long video
+ (The repeatedly appearing individuals are highlighted in different colors.) In contrast, GPT-4o and
+ ShareGPT4Video lose track of key individuals over time, misinterpreting content about one person as
+ involving multiple people.
+
+
+          </p>
+
+          <img src="static\images\pic1.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+
+          <p><br><br>
+            The method for automatically extracting the predicted \task sequence from the caption involves two steps: 1) Given the video frames and the caption, extract the IDs and their corresponding descriptions for each frame; 2) Extract the \task sequence by sequentially comparing the descriptions of the IDs in the current frame with those in the previous frame to determine whether they are the same ID. 
+          </p>
+          <img src="static\images\pic2.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-full">
+        <h2 class="title is-3">Tools for evaluating ID-Matching performance of video captions</h2>
+        <div class="content has-text-justified">
+          <p>
+            The three fundamental methods of LVLMs for annotating multiple frames, including ST, MTSC, and MTDC.
+
+          </p>
+
+          <img src="static\images\pic3.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+
+          <p><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Enhancing ID-Matching in video captioning</h2>
+        <div class="content has-text-justified">
+          <p>
+            Comparison of ST, MTSC, and MTDC across sequence similarity, precision, and recall. And results of the strength of SFS.
+          </p>
+        </div>
+
+
+        <div class="columns is-multiline">
+          <div class="column is-four-fifths">
+            <img src="static\images\pic4.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+          </div>
+          <div class="column is-one-fifth">
+            <img src="static\images\pic5.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+          </div>
+        </div>
+
+        
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <p>
+               Illustration of GPT-4o’s success rate in identifying two people as the same based on descriptions with n features (“n tuple”), with base, contrast, and mixture modes. The success rate and robustness improve as n increases and descriptions become more similar.
+            </p>
+            <img src="static\images\pic6.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+          </div>
+          <div class="column is-half">
+            
+            <img src="static\images\pic7.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+            <p>
+              Overview of RICE, consisting of two techniques, MF and ETF.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            An example in which GPT-4o misidentifies individuals due to similar actions or similar environments. In contrast, identifying individuals based on features is more robust.
+          </p>
+
+          <img src="static\images\pic8.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+
+        </div>
+
+      </div>
+    </div>
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img src="static\images\pic9.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          Pairwise comparisons in win rate on two datasets.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static\images\pic10.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+          Comparison of ID-Matching performance between ShareGPT4Video and RICE, along with ablation studies to evaluate the effectiveness of each component of RICE.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <img src="static\images\pic11.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
+         Quantitative comparison between RICE implemented on Qwen-VL2.5 and Deepseekv3 and their baseline.
        </h2>
      </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
+     
   </div>
 </div>
-</div>
+  </div>
+  
 </section>
+
+
+
+
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-full">
+        <h2 class="title is-3">Experiments</h2>
+        <div class="content has-text-justified">
+
+
+          <div class="columns is-multiline">
+          <div class="column is-two-fifths">
+            <img src="static\images\table1.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+          </div>
+          <div class="column is-three-fifth">
+            <img src="static\images\table2.png" alt="Descriptive Image" style="max-width: 100%; height: auto;">
+          </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- End image carousel -->
 
 
 
 
-<!-- Youtube video -->
+<!--
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
+      
       <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           
           <div class="publication-video">
-            <!-- Youtube embed code here -->
+            
             <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
@@ -218,41 +351,7 @@
     </div>
   </div>
 </section>
-<!-- End youtube video -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+-->
 
 
 
@@ -260,6 +359,7 @@
 
 
 <!-- Paper poster -->
+<!--
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
@@ -271,6 +371,7 @@
       </div>
     </div>
   </section>
+-->
 <!--End paper poster -->
 
 
